@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin # Name of the deployment
+  labels:
+    app: pgadmin # Name of your application
+spec:
+  selector:
+    matchLabels:
+      app: pgadmin # Name of your application
+  replicas: 1 # Number of replicas
+  template:
+    metadata:
+      labels:
+        app: pgadmin # Name of your application
+    spec:
+      containers:
+        # Containers are the individual pieces of your application that you want
+        # to run.
+        - name: pgadmincontainer # Name of the container
+          image: dpage/pgadmin4 # Image to use
+          ports:
+            - containerPort: 80
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: "admin@admin.com"
+            - name: PGADMIN_DEFAULT_PASSWORD
+              value: "aaaaaa"
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadminservice
+spec:
+  selector:
+    app: pgadmin
+  ports:
+    - protocol: TCP
+      port: 5050
+      targetPort: 80
+  type: NodePort

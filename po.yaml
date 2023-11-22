@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce  # Mode d'accès au volume
+  resources:
+    requests:
+      storage: 5Gi  # Taille du stockage demandé
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest  # Utilisation de l'image PostgreSQL
+          ports:
+            - containerPort: 5432  # Port PostgreSQL
+          env:
+            - name: POSTGRES_DB  # Nom de la base de données
+              value: postgres
+            - name: POSTGRES_USER  # Utilisateur de la base de données
+              value: postgres
+            - name: POSTGRES_PASSWORD  # Mot de passe de la base de données
+              value: postgres
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data  # Chemin de montage du stockage
+              name: postgres-storage  # Nom du volume à monter
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim  # Nom du PersistentVolumeClaim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432  # Port de la base de données
+      targetPort: 5432

@@ -2,11 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hello-world-ingress
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
 spec:
+  ingressClassName: "traefik"
   rules:
-    - host: gitlab.exemple  # Remplacez ceci par votre domaine souhaité
+    - host: cybermaniac.local  # Remplacez ceci par votre domaine souhaité
       http:
         paths:
           - path: /

@@ -1,12 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wp-clcreative
-  namespace: wp-clcreative
-  annotations:
+  name: traefik
+  #annotations:
   # (Optional): Annotations for the Ingress Controller
   # -- ingress class is needed when traefik is not the default
-  # kubernetes.io/ingress.class: traefik
+  #  kubernetes.io/ingress.class: traefik
   # ---
   # -- entrypoint and tls configurations
   # traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
@@ -16,17 +15,28 @@ metadata:
   # traefik.ingress.kubernetes.io/router.middlewares:your-middleware@kubernetescrd
   # ---
 spec:
+  ingressClassName: "traefik"
   rules:
-    - host: "your-hostname"
+    - host: "pg.kube.local"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: your-service-name
+                name: pgadminservice
                 port:
-                  number: 80
+                  number: 5050
+    - host: "s1.kube.local"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pgadminservice
+                port:
+                  number: 5050
   # (Optional) TLS settings
   # tls:
   # - hosts:

@@ -1,0 +1,11 @@
+services:
+  ansible:
+    container_name: ansible
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    volumes:
+      - ./ansible:/usr/ansible
+      - ~/.ssh:/root/.ssh
+

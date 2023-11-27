@@ -1,0 +1,13 @@
+---
+- name: Installation des dépendances pour Kubernetes
+  hosts: worker
+  become: true
+  roles:
+    - init-worker
+
+
+- name: Installation des dépendances pour Kubernetes
+  hosts: master
+  become: true
+  roles:
+    - init-master

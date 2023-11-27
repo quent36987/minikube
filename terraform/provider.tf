@@ -28,6 +28,14 @@ variable "ssh_public_key" {
   sensitive = true
 }
 
+variable "master_count" {
+  default = 1
+}
+
+variable "worker_count" {
+  default = 2
+}
+
 provider "proxmox" {
   pm_api_url          = var.proxmox_api_url
   pm_api_token_id     = var.proxmox_api_token_id

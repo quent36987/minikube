@@ -7,6 +7,14 @@ vault:
 	@echo "Create and chmod vault.txt"
 	@docker exec -it ansible chmod 600 .passwords/vault.txt
 
+k3s: copy vault
+	@echo "Launch playbook"
+	@docker exec -it ansible ansible-playbook playbooks/site.yml -i inventory.yml
+
+reset: copy vault
+	@echo "Launch playbook"
+	@docker exec -it ansible ansible-playbook playbooks/reset.yml -i inventory.yml
+
 run: copy vault
 	@echo "Launch playbook"
 	@docker exec -it ansible ansible-playbook ./playbooks/k8s.yml \

@@ -85,9 +85,9 @@
 
     - name: Change server to API endpoint instead of localhost
       ansible.builtin.command: >-
-         /usr/local/bin/k3s kubectl config set-cluster default
-          --server=https://{{ api_endpoint }}:{{ api_port }}
-          --kubeconfig ~{{ ansible_user }}/.kube/config
+        /usr/local/bin/k3s kubectl config set-cluster default
+         --server=https://{{ api_endpoint }}:{{ api_port }}
+         --kubeconfig ~{{ ansible_user }}/.kube/config
       changed_when: true
 
     - name: Copy kubectl config to local machine
@@ -136,3 +136,8 @@
   with_items:
     - kubectl
     - crictl
+
+- name: Add alias for kb = sudo kubectl to ~/.bashrc
+  lineinfile:
+    path: .bashrc
+    line: "alias kb='sudo kubectl'"

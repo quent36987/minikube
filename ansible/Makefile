@@ -9,11 +9,11 @@ vault:
 
 k3s: copy vault
 	@echo "Launch playbook"
-	@docker exec -it ansible ansible-playbook playbooks/site.yml -i inventory.yml
+	@docker exec -it ansible ansible-playbook playbooks/site.yml -i inventory/server/hosts
 
 reset: copy vault
 	@echo "Launch playbook"
-	@docker exec -it ansible ansible-playbook playbooks/reset.yml -i inventory.yml
+	@docker exec -it ansible ansible-playbook playbooks/reset.yml -i inventory/server/hosts
 
 run: copy vault
 	@echo "Launch playbook"

@@ -1,13 +1,10 @@
 ---
 #variable file for cluster
 
-
-pod_network_cidr: "10.244.0.0/16"
-
-# Network implementation('flannel', 'weave')
-network: weave
-
-# Container runtimes ('docker', 'crio')
-container_runtime: docker
-
-
+ansible_port: 22
+ansible_user: terraform
+k3s_version: v1.26.9+k3s1
+token: "mytoken"  # Use ansible vault if you want to keep it secret
+api_endpoint: "{{ hostvars[groups['server'][0]]['ansible_host'] | default(groups['server'][0]) }}"
+extra_server_args: ""
+extra_agent_args: ""

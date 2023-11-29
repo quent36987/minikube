@@ -28,12 +28,8 @@ variable "ssh_public_key" {
   sensitive = true
 }
 
-variable "master_count" {
-  default = 1
-}
-
-variable "worker_count" {
-  default = 2
+variable "agent-k3s_count" {
+  default = 3
 }
 
 provider "proxmox" {

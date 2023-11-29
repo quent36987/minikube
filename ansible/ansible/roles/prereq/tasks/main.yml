@@ -219,3 +219,13 @@
         content: "{{ config_yaml }}"
         dest: "/etc/rancher/k3s/config.yaml"
         mode: 0644
+
+- name: Download Helm installation script
+  shell: "curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3"
+
+- name: Grant execution permissions to the script
+  shell: "chmod 700 get_helm.sh"
+
+- name: Run Helm installation script
+  shell: "./get_helm.sh"
+

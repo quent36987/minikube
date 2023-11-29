@@ -140,4 +140,6 @@
 - name: Add alias for kb = sudo kubectl to ~/.bashrc
   lineinfile:
     path: .bashrc
-    line: "alias kb='sudo kubectl'"
+    line: |
+      "alias kb='sudo kubectl'"
+      "alias kubectl='sudo kubectl'"

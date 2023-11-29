@@ -21,3 +21,7 @@ Mais quel est l'objectif ? ok posons nous un objectif car j'ai aps de motiv la p
 - utiliser ansible pour installer k3s sur les agents
 - installer argo cd et qui pull le repo github avec un projet et qui le tiens a jours
 - 
+
+
+sudo kubectl port-forward service/argocd-server -n argocd 8080:443
+ssh -L 8080:localhost:8080 agent@192.168.1.201 -N

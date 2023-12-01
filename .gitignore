@@ -1,6 +1,6 @@
 .idea/
 .env
-
+.password
 credentials.auto.tfvars
 .terraform*
 terraform.tfstate*

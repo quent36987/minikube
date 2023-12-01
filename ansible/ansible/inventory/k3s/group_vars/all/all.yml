@@ -1,6 +1,9 @@
 ---
 #variable file for cluster
 
+k3s_agent_count: 3
+k3s_server_count: 2
+
 ansible_port: 22
 ansible_user: terraform
 k3s_version: v1.26.9+k3s1

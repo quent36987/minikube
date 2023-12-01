@@ -9,9 +9,7 @@ terraform {
   }
 }
 
-variable "proxmox_api_url" {
-  type = string
-}
+#### SENSITIVE VARIABLES ####
 
 variable "proxmox_api_token_id" {
   type      = string
@@ -23,12 +21,21 @@ variable "proxmox_api_token_secret" {
   sensitive = true
 }
 
-variable "ssh_public_key" {
-  type      = string
+variable "ssh_public_keys" {
+  type      = list(string)
   sensitive = true
 }
 
+#### NON-SENSITIVE VARIABLES ####
+
+variable "proxmox_api_url" {
+  type = string
+}
+
 variable "agent-k3s_count" {
+  default = 2
+}
+variable "server-k3s_count" {
   default = 3
 }
 

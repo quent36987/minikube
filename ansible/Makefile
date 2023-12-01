@@ -5,19 +5,19 @@ copy:
 
 vault:
 	@echo "Create and chmod vault.txt"
-	@docker exec -it ansible chmod 600 .passwords/vault.txt
+	@docker exec -it ansible chmod 600 .password/vault.txt
 
 k3s: copy vault
 	@echo "Launch playbook"
-	@docker exec -it ansible ansible-playbook playbooks/site.yml -i inventory/server/hosts
+	@docker exec -it ansible ansible-playbook playbooks/site.yml -i inventory/k3s/hosts
 
 reset: copy vault
 	@echo "Launch playbook"
-	@docker exec -it ansible ansible-playbook playbooks/reset.yml -i inventory/server/hosts
+	@docker exec -it ansible ansible-playbook playbooks/reset.yml -i inventory/k3s/hosts
 
 run: copy vault
 	@echo "Launch playbook"
 	@docker exec -it ansible ansible-playbook ./playbooks/k8s.yml \
         -i inventory/server/hosts \
-        --vault-password-file .passwords/vault.txt
+        --vault-password-file .password/vault.txt
 

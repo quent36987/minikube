@@ -25,3 +25,34 @@ Mais quel est l'objectif ? ok posons nous un objectif car j'ai aps de motiv la p
 
 sudo kubectl port-forward service/argocd-server -n argocd 8080:443
 ssh -L 8080:localhost:8080 agent@192.168.1.201 -N
+
+
+## USAGE
+
+### Création des Vms avec terraform
+Cela va construire x Vms `agent-k3s` et y Vms `server-k3s` et un `HAproxy` pour loadbalancer les server-k3s
+
+#### Prérequis
+
+Il faut créer un fichier `credentials.auto.tfvars` avec les variables suivantes:
+ - proxmox_api_token_id
+ - proxmox_api_token_secret
+ - proxmox_api_url
+ - ssh_public_keys
+
+#### utilisation
+
+```bash
+terraform init
+terraform apply -auto-approve
+```
+
+#### todo
+1. [ ] chiffrer les variables pour pouvoir les push sur git
+2. [ ] mettre le cluster sur une lan vmbr1 et le haproxy sur vmbr1 et vmbr0
+
+### Installation de k3s avec ansible
+
+https://kubespray.io/#/
+docker run --rm -it -v path_to_inventory/my_airgap_cluster:inventory/my_airgap_cluster myprivateregisry.com/kubespray/kubespray:v2.14.0 ansible-playbook -i inventory/my_airgap_cluster/hosts.yaml -b cluster.yml
+

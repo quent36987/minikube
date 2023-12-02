@@ -7,6 +7,10 @@ terraform {
       version = "2.9.11"
     }
   }
+
+  backend "local" {
+    path = "./states/terraform.tfstate"
+  }
 }
 
 #### SENSITIVE VARIABLES ####
@@ -33,9 +37,12 @@ variable "proxmox_api_url" {
 }
 
 variable "agent-k3s_count" {
-  default = 2
+  default = 0
 }
 variable "server-k3s_count" {
+  default = 0
+}
+variable "k8s_count" {
   default = 3
 }
 

@@ -58,16 +58,15 @@ spec:
 #                name: hello-world-service
 #                port:
 #                  number: 80
-    - host: "kube.local"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: pgadminservice
-                port:
-                  number: 5050
+      - http:
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: pgadminservice
+                  port:
+                    number: 5050
   # (Optional) TLS settings
   # tls:
   # - hosts:

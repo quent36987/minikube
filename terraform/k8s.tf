@@ -1,7 +1,7 @@
-resource "proxmox_vm_qemu" "agent-k3s" {
-  count       = var.agent-k3s_count
-  name        = "agent-k3s-${count.index}"
-  desc        = "agent-k3s-${count.index}"
+resource "proxmox_vm_qemu" "k8s" {
+  count       = var.k8s_count
+  name        = "k8s-${count.index}"
+  desc        = "k8s-${count.index}"
   target_node = "home"
   agent       = 1
 
@@ -10,7 +10,7 @@ resource "proxmox_vm_qemu" "agent-k3s" {
   sockets                = 1
   cpu                    = "host"
   scsihw                 = "virtio-scsi-pci"
-  memory                 = 2048
+  memory                 = 4096
   bootdisk               = "scsi0"
 
   clone = "debian11.vm.shiwaforce.com"
@@ -21,7 +21,7 @@ resource "proxmox_vm_qemu" "agent-k3s" {
   }
 
   os_type   = "cloud-init"
-  ipconfig0 = "ip=192.168.1.21${count.index}/24,gw=192.168.1.254"
+  ipconfig0 = "ip=192.168.1.20${count.index}/24,gw=192.168.1.254"
 
 
   disk {
@@ -31,10 +31,11 @@ resource "proxmox_vm_qemu" "agent-k3s" {
     slot    = 0
   }
 
-  ciuser  = "agent"
+  ciuser  = "root"
   sshkeys = <<EOF
-    join("\n", var.ssh_public_keys)
+         ${join("\n", var.ssh_public_keys)}
     EOF
+
 
   lifecycle {
     ignore_changes = [
@@ -42,5 +43,5 @@ resource "proxmox_vm_qemu" "agent-k3s" {
     ]
   }
 
-  tags = "k3sCluster"
+  tags = "k8scluster"
 }

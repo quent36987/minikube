@@ -1,9 +1,8 @@
 resource "proxmox_vm_qemu" "server-k3s" {
   count       = var.server-k3s_count
-  name        = "server-k3s-${count.index + 1}"
-  desc        = "server-k3s-${count.index + 1}"
+  name        = "server-k3s-${count.index}"
+  desc        = "server-k3s-${count.index}"
   target_node = "home"
-  #vmid        = "80${count.index + 1}"
   agent       = 1
 
   define_connection_info = true
@@ -22,7 +21,7 @@ resource "proxmox_vm_qemu" "server-k3s" {
   }
 
   os_type   = "cloud-init"
-  ipconfig0 = "ip=192.168.1.20${count.index + 1}/24,gw=192.168.1.254"
+  ipconfig0 = "ip=192.168.1.20${count.index}/24,gw=192.168.1.254"
 
 
   disk {
@@ -34,7 +33,7 @@ resource "proxmox_vm_qemu" "server-k3s" {
 
   ciuser  = "server"
   sshkeys = <<EOF
-    ${var.ssh_public_keys}
+    join("\n", var.ssh_public_keys)
     EOF
 
   lifecycle {

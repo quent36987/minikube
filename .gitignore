@@ -5,3 +5,5 @@ credentials.auto.tfvars
 .terraform*
 terraform.tfstate*
 *.log
+kubespray-do.conf
+states

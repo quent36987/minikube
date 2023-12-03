@@ -1,7 +1,7 @@
 .idea/
 .env
 .password
-credentials.auto.tfvars
+terraform/credentials.auto.tfvars
 .terraform*
 terraform.tfstate*
 *.log

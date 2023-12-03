@@ -33,7 +33,7 @@ resource "proxmox_vm_qemu" "agent-k3s" {
 
   ciuser  = "agent"
   sshkeys = <<EOF
-    join("\n", var.ssh_public_keys)
+    ${join("\n", var.ssh_public_keys)}
     EOF
 
   lifecycle {

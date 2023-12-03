@@ -15,28 +15,28 @@ metadata:
   # traefik.ingress.kubernetes.io/router.middlewares:your-middleware@kubernetescrd
   # ---
 spec:
-  ingressClassName: "traefik"
+  #ingressClassName: "traefik"
   rules:
-    - host: "pg.kube.local"
+    - host: "pg.home.quentinou.ovh"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: pgadminservice
+                name: hello-world-service
                 port:
-                  number: 5050
-    - host: "s1.kube.local"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: pgadminservice
-                port:
-                  number: 5050
+                  number: 80
+#    - host: "s1.home.quentinou.ovh"
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: pgadmin
+#                port:
+#                  number: 5050
   # (Optional) TLS settings
   # tls:
   # - hosts:

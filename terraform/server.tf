@@ -33,7 +33,7 @@ resource "proxmox_vm_qemu" "server-k3s" {
 
   ciuser  = "server"
   sshkeys = <<EOF
-    join("\n", var.ssh_public_keys)
+    ${join("\n", var.ssh_public_keys)}
     EOF
 
   lifecycle {

@@ -33,6 +33,16 @@ sudo kubectl port-forward service/argocd-server -n argocd 8080:443
 ssh -L 8080:localhost:8080 agent@192.168.1.201 -N
 
 
+
+
+## k3s => helm puis le reste cela marche.. pas k8s :()
+
+
+
+
+
+
+
 ## USAGE
 
 ### Création des Vms avec terraform

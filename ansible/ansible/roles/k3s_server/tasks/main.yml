@@ -141,5 +141,5 @@
   lineinfile:
     path: .bashrc
     line: |
-      "alias kb='sudo kubectl'"
-      "alias kubectl='sudo kubectl'"
+      alias kb='sudo kubectl'
+      alias kubectl='sudo kubectl'

@@ -31,7 +31,7 @@ resource "proxmox_vm_qemu" "server-k3s" {
     slot    = 0
   }
 
-  ciuser  = "server"
+  ciuser  = "root"
   sshkeys = <<EOF
     ${join("\n", var.ssh_public_keys)}
     EOF

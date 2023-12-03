@@ -37,15 +37,15 @@ variable "proxmox_api_url" {
 }
 
 variable "agent-k3s_count" {
-  default = 0
+  default = 2
 }
 
 variable "server-k3s_count" {
-  default = 0
+  default = 3
 }
 
 variable "k8s_count" {
-  default = 3
+  default = 0
 }
 
 provider "proxmox" {

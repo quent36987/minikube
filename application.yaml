@@ -13,7 +13,7 @@ spec:
       - kube/traefik
     helm:
       valueFiles:
-        - traefik-values.yaml
+        - traefik/traefik-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp

@@ -10,9 +10,9 @@ spec:
     targetRevision: HEAD
     path:
       - kube
-    helm:
-      valueFiles:
-        - traefik-values.yaml
+   # helm:
+   #   valueFiles:
+   #     - traefik-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp

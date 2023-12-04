@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: traefik
+  namespace: traefik
   #annotations:
   # (Optional): Annotations for the Ingress Controller
   # -- ingress class is needed when traefik is not the default

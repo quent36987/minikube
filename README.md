@@ -10,7 +10,7 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
  ./get_helm.sh
 helm repo add traefik  https://helm.traefik.io/traefik
 helm repo update
-helm install traefik traefik/traefik
+helm install traefik traefik/traefik --values=traefik-values.yaml
 
 
 kubectl get svc -l app.kubernetes.io/name=traefik

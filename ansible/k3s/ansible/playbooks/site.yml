@@ -17,3 +17,10 @@
   become: true
   roles:
     - role: k3s_agent
+
+- name: ArgoCD
+  hosts: server
+  become: true
+  run_once: true
+  roles:
+      - role: argocd

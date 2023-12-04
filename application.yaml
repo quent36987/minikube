@@ -13,10 +13,8 @@ spec:
    #   valueFiles:
    #     - traefik-values.yaml
   destination:
-    - namespace: traefik
-      server: https://kubernetes.default.svc
-    - namespace: myapp
-      server: https://kubernetes.default.svc
+    namespace: myapp
+    server: https://kubernetes.default.svc
 
   syncPolicy:
     syncOptions:

@@ -1,24 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-base
+  name: traefik-setup
   namespace: argocd
+  finalizers:
+    # The default behaviour is foreground cascading deletion
+    - resources-finalizer.argocd.argoproj.io
+
 spec:
   project: default
+
   source:
     repoURL: https://github.com/quent36987/minikube
     targetRevision: HEAD
-    path: kube/argo-apps
+    path: kube/traefik-setup
 
   destination:
-    namespace: argocd
     server: https://kubernetes.default.svc
+    namespace: kube-system
 
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-
     automated:
       prune: true
       selfHeal: true
-

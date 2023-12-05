@@ -1,9 +1,8 @@
-{{- if .Values.ingress.enable }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: traefik
-  namespace: traefik
+  namespace: default
   #annotations:
   # (Optional): Annotations for the Ingress Controller
   # -- ingress class is needed when traefik is not the default
@@ -19,7 +18,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: "kube.{{ .Values.domain }}"
+    - host: "kube.local"
       http:
         paths:
           - path: /
@@ -45,5 +44,3 @@ spec:
   #   - your-hostname.com  # Your hostname
   #   secretName: your-secret  # Your TLS Secret
   # ---
-
-{{- end }}

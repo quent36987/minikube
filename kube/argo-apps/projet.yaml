@@ -11,7 +11,7 @@ spec:
     path: kube/projet
     helm:
   destination:
-    namespace: argocd
+    namespace: app
     server: https://kubernetes.default.svc
 
   syncPolicy:

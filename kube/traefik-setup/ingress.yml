@@ -16,7 +16,7 @@ metadata:
   # traefik.ingress.kubernetes.io/router.middlewares:your-middleware@kubernetescrd
   # ---
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: "pg.home.quentinou.ovh"
   rules:
     - host: "kube.local"
       http:

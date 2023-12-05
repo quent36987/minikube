@@ -6,3 +6,21 @@
 - name: Install ArgoCD
   ansible.builtin.command:
     cmd: "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml"
+
+- name: Wait for ArgoCD to be ready
+  ansible.builtin.command:
+    argv:
+      - kubectl
+      - wait
+      - -n
+      - argocd
+      - --for=condition=available
+      - --timeout=0
+      - --all
+      - deploy
+  register: result
+  until: result.rc == 0
+  retries: 40
+  delay: 10
+  check_mode: false
+  changed_when: false

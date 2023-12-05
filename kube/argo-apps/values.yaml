@@ -211,9 +211,9 @@ providers:
     # -- Load Kubernetes IngressRoute provider
     enabled: true
     # -- Allows IngressRoute to reference resources in namespace other than theirs
-    allowCrossNamespace: false
+    allowCrossNamespace: true
     # -- Allows to reference ExternalName services in IngressRoute
-    allowExternalNameServices: false
+    allowExternalNameServices: true
     # -- Allows to return 503 when there is no endpoints available
     allowEmptyServices: false
     # ingressClass: traefik-internal
@@ -226,7 +226,7 @@ providers:
     # -- Load Kubernetes Ingress provider
     enabled: true
     # -- Allows to reference ExternalName services in Ingress
-    allowExternalNameServices: false
+    allowExternalNameServices: true
     # -- Allows to return 503 when there is no endpoints available
     allowEmptyServices: false
     # ingressClass: traefik-internal
@@ -236,7 +236,7 @@ providers:
     # - "default"
     # IP used for Kubernetes Ingress endpoints
     publishedService:
-      enabled: false
+      enabled: true
       # Published Kubernetes Service to copy status from. Format: namespace/servicename
       # By default this Traefik service
       # pathOverride: ""

@@ -138,8 +138,19 @@
     - crictl
 
 - name: Add alias for kb = sudo kubectl to ~/.bashrc
+  run_once: true
   lineinfile:
     path: .bashrc
     line: |
       alias kb='sudo kubectl'
       alias kubectl='sudo kubectl'
+
+- name: Download the /etc/rancher/k3s/k3s.yaml file
+  run_once: true
+  ansible.builtin.fetch:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: /usr/config/kube-config.yaml
+    flat: yes
+    fail_on_missing: no
+    validate_certs: no
+    ignore_errors: yes

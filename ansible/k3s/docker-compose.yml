@@ -8,4 +8,5 @@ services:
     volumes:
       - ./ansible:/usr/ansible
       - ~/.ssh:/root/.ssh
+      - ./config:/usr/config
 

@@ -8,3 +8,5 @@ terraform.tfstate*
 kubespray-do.conf
 states
 .vault_pass.txt
+kube-config.yaml
+

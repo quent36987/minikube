@@ -10,6 +10,8 @@ vault:
 k3s: copy
 	@echo "Launch playbook"
 	@docker exec -it ansible ansible-playbook playbooks/site.yml -i inventory/k3s/hosts.ini
+	@echo ${PWD}
+	@sed -i 's/127.0.0.1/192.168.1.200/g' ${PWD}/config/kube-config.yaml
 
 reset: copy vault
 	@echo "Launch playbook"
@@ -20,5 +22,3 @@ run: copy vault
 	@docker exec -it ansible ansible-playbook ./playbooks/k8s.yml \
         -i inventory/server/hosts \
         --vault-password-file .password/vault.txt
-
-#  scp root@192.168.1.200:/etc/rancher/k3s/k3s.yaml kubespray-do.conf

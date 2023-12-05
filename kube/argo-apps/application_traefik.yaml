@@ -7,7 +7,7 @@ metadata:
   #   argocd.argoproj.io/sync-wave: "-2"
 spec:
   destination:
-    namespace: traefik
+    namespace: app
     server: https://kubernetes.default.svc
   project: default
   source:

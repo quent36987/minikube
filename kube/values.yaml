@@ -246,7 +246,7 @@ providers:
   # This can be used to mount a cert pair or a configmap that holds a config.toml file.
   # After the volume has been mounted, add the configs into traefik by using the `additionalArguments` list below, eg:
   additionalArguments:
-    - "--providers.kubernetesingress.ingressendpoint.publishedservice=traefik/traefik"
+    - "--providers.kubernetesingress.ingressendpoint.publishedservice=app/traefik"
   # - "--providers.file.filename=/config/dynamic.toml"
   # - "--ping"
   # - "--ping.entrypoint=web"`

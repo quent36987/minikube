@@ -7,7 +7,7 @@ metadata:
   #   argocd.argoproj.io/sync-wave: "-2"
 spec:
   destination:
-    namespace: traefik
+    namespace: app
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -17,11 +17,6 @@ spec:
         - https://raw.githubusercontent.com/quent36987/minikube/master/kube/values.yaml
     repoURL: https://traefik.github.io/charts
     targetRevision: v20.8.0
-    health:
-      lua: |
-        hs = {}
-        hs.status = "Healthy"
-        return hs
   syncPolicy:
     automated:
       prune: true

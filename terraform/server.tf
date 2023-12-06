@@ -10,7 +10,7 @@ resource "proxmox_vm_qemu" "server-k3s" {
   sockets                = 1
   cpu                    = "host"
   scsihw                 = "virtio-scsi-pci"
-  memory                 = 2048
+  memory                 = 4096
   bootdisk               = "scsi0"
 
   clone = "debian11.vm.shiwaforce.com"

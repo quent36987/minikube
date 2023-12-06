@@ -1,18 +1,22 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
-  name: argocd
+  name: argocd-server
   namespace: argocd
 spec:
-  ingressClassName: "traefik"
-  rules:
-    - host: "argo.home.quentinou.ovh"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  name: https
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`argo.home.quentinou.ovh`)
+      priority: 10
+      services:
+        - name: argocd-server
+          port: 80
+    - kind: Rule
+      match: Host(`argo.home.quentinou.ovh`) && Headers(`Content-Type`, `application/grpc`)
+      priority: 11
+      services:
+        - name: argocd-server
+          port: 80
+          scheme: h2c

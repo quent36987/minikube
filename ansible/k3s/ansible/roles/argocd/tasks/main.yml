@@ -24,3 +24,11 @@
   delay: 10
   check_mode: false
   changed_when: false
+
+- name: Set Argo CD admin password
+  ansible.builtin.command: >
+    kubectl -n argocd patch secret argocd-secret
+    -p '{"stringData": {
+      "admin.password": "$2a$10$wIVhDQhyqLSmlX6bp10dEeuQPgF1NuV.qhGILFr/dsv0WArXPQUvO%",
+      "admin.passwordMtime": "'$(date "+%Y-%m-%dT%H:%M:%SZ")'"
+    }}'

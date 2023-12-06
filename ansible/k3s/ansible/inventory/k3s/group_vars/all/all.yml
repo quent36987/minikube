@@ -11,3 +11,6 @@ token: "mytoken"  # Use ansible vault if you want to keep it secret
 api_endpoint: "{{ hostvars[groups['server'][0]]['ansible_host'] | default(groups['server'][0]) }}"
 extra_server_args: ""
 extra_agent_args: ""
+
+password_argocd: "$2a$10$zIUYCtdNFHXvoprEY/UGSOhpcENUv9rJAL1YFaCHEciO3rhI.46UC"
+passwordMtime_argocd: "{{ lookup('pipe', 'date +%FT%T%Z') }}"

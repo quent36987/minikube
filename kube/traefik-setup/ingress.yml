@@ -20,7 +20,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: "pg.home.quentinou.ovh"
+    - host: "home.home.quentinou.ovh"
       http:
         paths:
           - path: /

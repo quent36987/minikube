@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: traefik
   namespace: app
-  #annotations:
+  annotations:
   # (Optional): Annotations for the Ingress Controller
   # -- ingress class is needed when traefik is not the default
   #  kubernetes.io/ingress.class: traefik
@@ -15,6 +15,12 @@ metadata:
   # -- optional middlewares
   # traefik.ingress.kubernetes.io/router.middlewares:your-middleware@kubernetescrd
   # ---
+    argocd.argoproj.io/resource.customizations: |
+      extensions/Ingress:
+        health.lua: |
+          hs = {}
+          hs.status = "Healthy"
+          return hs
 spec:
   ingressClassName: "traefik"
   rules:

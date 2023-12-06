@@ -20,5 +20,9 @@ k get events -n traefik
 kubectl get svc -l app.kubernetes.io/name=traefik
 kubectl get po -l app.kubernetes.io/name=traefik
 
-
+kubectl -n argocd patch secret argocd-secret \
+-p '{"stringData": {
+"admin.password": "$2a$10$9THUzMQ4ddHwiPMImFZPVOXQTH6du6VuKnusYVMa7J0eBtQD6Su5e",
+"admin.passwordMtime": "'$(date +%FT%T%Z)'"
+}}'
 

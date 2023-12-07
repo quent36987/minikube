@@ -4,3 +4,7 @@ kind: Kustomization
 resources:
   - https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
   - https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml
+  - application_traefik.yaml
+  - traefik-setup.yaml
+  - argo-config.yaml
+  - projet.yaml

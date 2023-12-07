@@ -16,8 +16,3 @@ reset: copy vault
 	@echo "Launch playbook"
 	@docker exec -it ansible ansible-playbook playbooks/reset.yml -i inventory/k3s/hosts.ini
 
-run: copy vault
-	@echo "Launch playbook"
-	@docker exec -it ansible ansible-playbook ./playbooks/k8s.yml \
-        -i inventory/server/hosts \
-        --vault-password-file .password/vault.txt

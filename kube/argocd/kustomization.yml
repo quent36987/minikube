@@ -4,10 +4,10 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - namespace.yml
-  - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-  - ingress.yml
+  - namespace.yaml
+  - install.yaml
+  - ingress.yaml
 
 patches:
-  - path: patch-argocd-cm.yml
-  - path: patch-argocd-insecure.yml
+  - path: patch-argocd-cm.yaml
+  - path: patch-argocd-insecure.yaml

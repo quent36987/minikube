@@ -1,18 +1,16 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: traefik
-  namespace: app
+  namespace: traefik
 spec:
-  ingressClassName: "traefik"
-  rules:
-    - host: "dashboard.home.quentinou.ovh"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: traefik-dashboard
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`tra.home.quentinou.ovh`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+      kind: Rule
+      services:
+        - kind: TraefikService
+          name: api@internal

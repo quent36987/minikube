@@ -7,6 +7,9 @@ k3s_server_count: 3
 ansible_port: 22
 #ansible_user: terraform
 k3s_version: v1.26.9+k3s1
+repo_github: "https://github.com/quent36987/minikube.git"
+dest_github: "minikube"
+argocd_repo: "minikube/kube/argocd"
 token: "mytoken"  # Use ansible vault if you want to keep it secret
 api_endpoint: "{{ hostvars[groups['server'][0]]['ansible_host'] | default(groups['server'][0]) }}"
 extra_server_args: ""

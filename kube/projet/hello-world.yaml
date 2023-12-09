@@ -31,22 +31,4 @@ spec:
     - name: http
       port: 80
   type: ClusterIP
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: hello-world
-  namespace: app
-spec:
-  ingressClassName: "traefik"
-  rules:
-    - host: "pgadmin.home.quentinou.ovh"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: pgadmin
-                port:
-                  number: 5050
+

@@ -1,6 +1,12 @@
+- name: Clone my argocd repo
+  ansible.builtin.git:
+    repo: "{{ repo_github }}"
+    dest: "{{ dest_github }}"
+    force: yes
+
 - name: Install ArgoCD
   ansible.builtin.command:
-    cmd: "kubectl apply -f https://raw.githubusercontent.com/quent36987/minikube/master/kube/argocd/kustomization.yml"
+    cmd: "kubectl apply -k {{ argocd_repo }}"
 
 - name: Wait for ArgoCD to be ready
   ansible.builtin.command:
@@ -28,14 +34,14 @@
     "admin.passwordMtime": "{{ passwordMtime_argocd }}"
     }}'
 
-- name: Create ArgoCD application (my git repo)
-  ansible.builtin.command:
-    argv:
-      - kubectl
-      - apply
-      - -n
-      - argocd
-      - -f
-      - https://raw.githubusercontent.com/quent36987/minikube/master/kube/application.yaml
-
+#- name: Create ArgoCD application (my git repo)
+#  ansible.builtin.command:
+#    argv:
+#      - kubectl
+#      - apply
+#      - -n
+#      - argocd
+#      - -f
+#      - https://raw.githubusercontent.com/quent36987/minikube/master/kube/application.yaml
+#
 

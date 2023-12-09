@@ -1,48 +1,24 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: traefik
+  name: projet-ingress
   namespace: app
-  #annotations:
-  # (Optional): Annotations for the Ingress Controller
-  # -- ingress class is needed when traefik is not the default
-  #  kubernetes.io/ingress.class: traefik
-  # ---
-  # -- entrypoint and tls configurations
-  # traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
-  # traefik.ingress.kubernetes.io/router.tls: "true"
-  # ---
-  # -- optional middlewares
-  # traefik.ingress.kubernetes.io/router.middlewares:your-middleware@kubernetescrd
-  # ---
-
-
 spec:
-  ingressClassName: "traefik"
-  rules:
-    - host: "home.home.quentinou.ovh"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: hello-world-service
-                port:
-                  number: 80
-#    - host: "s1.home.quentinou.ovh"
-#      http:
-#        paths:
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: pgadmin
-#                port:
-#                  number: 5050
-  # (Optional) TLS settings
-  # tls:
-  # - hosts:
-  #   - your-hostname.com  # Your hostname
-  #   secretName: your-secret  # Your TLS Secret
-  # ---
+  entryPoints:
+    - websecure
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`projet.home.quentinou.ovh`)
+      priority: 10
+      services:
+        - name: pgadmin
+          port: 80
+    - kind: Rule
+      match: Host(`projet.home.quentinou.ovh`) && Headers(`Content-Type`, `application/grpc`)
+      priority: 11
+      services:
+        - name: pgadmin
+          port: 80
+          scheme: h2c

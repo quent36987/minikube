@@ -1,3 +1,9 @@
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
 - name: Clone my argocd repo
   ansible.builtin.git:
     repo: "{{ repo_github }}"
@@ -21,7 +27,7 @@
       - deploy
   register: result
   until: result.rc == 0
-  retries: 40
+  retries: 20
   delay: 10
   check_mode: false
   changed_when: false
@@ -34,14 +40,14 @@
     "admin.passwordMtime": "{{ passwordMtime_argocd }}"
     }}'
 
-#- name: Create ArgoCD application (my git repo)
-#  ansible.builtin.command:
-#    argv:
-#      - kubectl
-#      - apply
-#      - -n
-#      - argocd
-#      - -f
-#      - https://raw.githubusercontent.com/quent36987/minikube/master/kube/application.yaml
-#
+- name: Create ArgoCD application (my git repo)
+  ansible.builtin.command:
+    argv:
+      - kubectl
+      - apply
+      - -n
+      - argocd
+      - -f
+      - https://raw.githubusercontent.com/quent36987/minikube/master/kube/application.yaml
+
 

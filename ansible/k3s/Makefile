@@ -12,7 +12,7 @@ k3s: copy
 	@docker exec -it ansible ansible-playbook playbooks/site.yml -i inventory/k3s/hosts.ini
 	@sed -i 's/127.0.0.1/192.168.1.200/g' ${PWD}/config/kube-config.yaml
 
-reset: copy vault
+reset: copy
 	@echo "Launch playbook"
 	@docker exec -it ansible ansible-playbook playbooks/reset.yml -i inventory/k3s/hosts.ini
 

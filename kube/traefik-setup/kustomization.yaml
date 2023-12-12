@@ -4,5 +4,5 @@ kind: Kustomization
 
 resources:
   - traefik.yaml
-  - dashboard.yaml
+  # - dashboard.yaml
   #- cloudflare-credentials-sealed.yml

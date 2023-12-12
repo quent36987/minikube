@@ -11,7 +11,7 @@ spec:
     path: kube/traefik-setup
 
   destination:
-    namespace: argocd
+    namespace: traefik
     server: https://kubernetes.default.svc
 
   syncPolicy:

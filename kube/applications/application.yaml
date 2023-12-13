@@ -11,6 +11,7 @@ spec:
     path: kube/traefik-setup
 
   destination:
+    namespace: traefik
     server: https://kubernetes.default.svc
 
   syncPolicy:

@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: traefik
 
 resources:
+  - namespace.yaml
   - traefik.yaml
   - dashboard.yaml
   #- cloudflare-credentials-sealed.yml

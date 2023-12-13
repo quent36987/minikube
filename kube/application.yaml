@@ -13,7 +13,6 @@ spec:
     path: kube/applications
 
   destination:
-    namespace: argocd
     server: https://kubernetes.default.svc
 
   syncPolicy:

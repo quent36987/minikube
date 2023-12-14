@@ -1,9 +1,9 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: traefik
+namespace: argocd
 
 resources:
-  - namespace.yaml
-  - dashboard.yaml
+  - application.yaml
+  #- dashboard.yaml
   #- cloudflare-credentials-sealed.yml
